@@ -1,47 +1,69 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Hello = () => {
+
+const Header = (props) =>{
+
+  return(
+  <div>
+    <h1>{props.course}</h1>
+  </div>
+  )
+}
+
+const Part = (props) =>{
+
+  return(
+    <div>
+      <p>
+        {props.part} {props.excercises}
+      </p>
+    </div>
+  )
+}
+
+
+const Content = (props) =>{
+
+  return(
+    <div>
+      <Part part={props.part1} excercises={props.exercises1} />
+      <Part part={props.part2} excercises={props.exercises2} />
+      <Part part={props.part3} excercises={props.exercises3} />
+    </div>
+  )
+}
+
+
+const Total = (props) =>{
+  
   return (
     <div>
-      <p>Hello world</p>
+      <p>Number of exercises {props.exercises1 + props.exercises2 + props.exercises3}</p>
     </div>
   )
 }
 
-const Greeting = (props)=>{
-  return(
-    <div>
-      <h3>HELLO YOU BASTARD {props.name}</h3>
-      <br />
-      <br />
-    </div>
-
-  )
-}
-
-
-const Formal = (props) =>{
-  return(
-    <div>
-      <h2>Hi my name is {props.name}, I'm {props.age} years old and I'm from {props.city}</h2>
-    </div>
-  )
-} 
 
 const App = () => {
-
-  let myName = 'Apolo'
-  let myAge = 3
+  const course = 'Half Stack application development'
+  const part1 = 'Fundamentals of React'
+  const exercises1 =  10
+  const part2 = 'Using props to pass data'
+  const exercises2 = 7
+  const part3 = 'State of a component'
+  const exercises3 = 14
 
   return (
     <div>
-      <h1>Greetings</h1>
-      <Hello />
-      <Greeting name="ENZO"/>
-      <Greeting name="JOSÉ" />
-      <Formal name={myName} age={myAge} city={'Hohenau'} />
-
+      <Header course={course}/>
+      <Content part1={part1} exercises1={exercises1} 
+      part2={part2} exercises2={exercises2}
+      part3={part3} exercises3={exercises3}
+      />
+      <Total exercises1={exercises1} 
+      exercises2={exercises2} 
+      exercises3={exercises3} />
     </div>
   )
 }
