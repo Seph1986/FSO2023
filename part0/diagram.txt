@@ -1,0 +1,50 @@
+0.4 --DIAGRAM--:
+title FullStackDiagram
+
+browser->server:HTTP GET 'https://studies.cs.helsinki.fi/exampleapp/notes';
+server->browser:HTML file;
+browser->server:HTTP GET 'https://studies.cs.helsinki.fi/exampleapp/main.css';
+server->browser:main.css;
+browser->server:HTTP GET 'https://studies.cs.helsinki.fi/exampleapp/main.js';
+server->browser:main.js;
+browser->server:HTTP GET 'https://studies.cs.helsinki.fi/exampleapp/data.js';
+server->browser:data.json
+browser->server:HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note';
+server->browser:HTTP 302, redirection to '/exampleapp/notes'
+
+note over browser:
+Because of the redirection the page goes again thru all the process detailed above
+before the POST request.
+
+
+0.5 --ACCESS SPA DIAGRAM-- :
+title FullStackDiagram SPA
+
+browser->server:HTTP GET 'https://studies.cs.helsinki.fi/exampleapp/spa';
+server->browser:HTML file;
+browser->server:HTTP GET 'https://studies.cs.helsinki.fi/exampleapp/spa.js';
+server->browser:spa.js;
+browser->server:https://studies.cs.helsinki.fi/exampleapp/data.js';
+server->browser:data.json
+
+note over browser:
+The JSON data its render with JavaScript
+
+0.6 --ACCESS AND SENDING SPA DIAGRAM-- :
+title FullStackDiagram SPA
+
+browser->server:HTTP GET 'https://studies.cs.helsinki.fi/exampleapp/spa';
+server->browser:HTML file;
+browser->server:HTTP GET 'https://studies.cs.helsinki.fi/exampleapp/spa.js';
+server->browser:spa.js;
+browser->server:https://studies.cs.helsinki.fi/exampleapp/data.js';
+server->browser:data.json
+browser->server:HTTP POST 'https://studies.cs.helsinki.fi/exampleapp/new_note_spa';
+server->browser:HTTP 201 created
+
+note over browser:
+The JSON data its render with JavaScript
+In this case the page ins't reloaded. The info its send in a json format, JavasCript
+takes care of getting the info from the form stops the event of sending the form;
+Then it creates a new note, pushes the note to our list and render back the 
+list on the browser.
