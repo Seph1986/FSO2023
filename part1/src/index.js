@@ -1,34 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+ 
+const Display = ({counter}) => <div>{counter}</div>
 
 
-const Hello = ({ name, age }) => {
-
-  const bornYear = () => new Date().getFullYear() - age
-
-  return(
-    <div>
-      <p>
-        Hello, {name}, you are {age} years old.
-      </p>
-      <p>So you probably born in {bornYear()}</p>
-    </div>
-  )
+const MyButton = ({handleClick, text}) => {
+  return <button onClick={handleClick}>
+    {text}
+    </button>
 }
 
 const App = () => {
-  const name = 'Peter'
-  const age = 10
+  const [ counter, setCounter ] = useState(0)
+  
+  const increaseByOne = () => setCounter(counter + 1)
+  const decreseByOne = () => setCounter(counter -1)
+  const restart = () => setCounter(0)
 
   return (
     <div>
-      <h1>Greetings</h1>
-      <Hello name="Maya" age={16 + 10} />
-      <Hello name={name} age={age} />
-      <br />
-      <h1>Hero goes my counter</h1>
+      <Display counter={counter}/>
+      <MyButton handleClick={increaseByOne} text={'PRUS URTRA'} />
+      <MyButton handleClick={decreseByOne} text={'Minus One'} />
+      <MyButton handleClick={restart} text={'HARD RESET FROM FRACTORY'} />
+      
     </div>
   )
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <App />, 
+  document.getElementById('root')
+)
