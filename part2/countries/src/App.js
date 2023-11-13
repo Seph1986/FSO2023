@@ -13,18 +13,18 @@ const App = () => {
     axios.get('https://restcountries.com/v3.1/all')
       .then(response => {
         let countries = response.data
-
         setAllCountries(countries)
       })
   }
+
+  useEffect(hook, [])
+
 
   // INPUT CONTROL
   const handleCountrieChange = (event) => {
     console.log(event.target.value)
     setInput(event.target.value.toLowerCase())
   }
-
-  useEffect(hook, [])
 
 
   // FILTER COUNTRIES

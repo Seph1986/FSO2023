@@ -3,11 +3,16 @@ import Detail from './Detail'
 
 const Countries = ({ countries, modifyState }) => {
   
+  // MODIFYING A STATE FROM ANOTHER COMPONENT (app/input)
+
+  // SUPER COOL .. :)
+  // JUST LEARNED ABOUT THIS !!!
+  
   const handleCLick = (country) => {
     modifyState(country.name.common.toLowerCase())
   }
 
-  
+
   if (countries.length > 10) return <strong>to many countries ...</strong>
   
   if (countries.length < 10 && countries.length > 1) {
