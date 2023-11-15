@@ -1,14 +1,17 @@
 import React from 'react'
 import Directory from './Directory'
 
-const Persons = ({persons, filter}) => {
+const Persons = ({persons, filter, deletePerson}) => {
+  
   return (
     <div>
       <ul>
         {persons.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()))
           .map(person =>
-            <Directory key={person.name} person={person} />
-          )}
+            <li key={person.name}>
+              <Directory person={person} deletePerson={deletePerson}/> 
+            </li>
+            )}
       </ul>
     </div>
   )

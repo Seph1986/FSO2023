@@ -1,17 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
-
-
+import personServer from './services/persons'
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456' },
-    { name: 'Ada Lovelace', number: '39-44-5323523' },
-    { name: 'Dan Abramov', number: '12-43-234345' },
-    { name: 'Mary Poppendieck', number: '39-23-6423122' }
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
@@ -38,38 +32,89 @@ const App = () => {
   }
 
 
-  // CREATE THE NEW PERSON 
-  const addPerson = (event) => {
+  // -- FETCH ALL PERSONS --
+  useEffect(() => {
+    personServer
+      .getAllPersons()
+      .then(res => {
+        setPersons(res)
+      })
+  }, [])
+
+  //  --  ------------  --
+
+
+  // ADD OR MODIFY PERSON
+  const submitControl = (event) => {
     event.preventDefault()
-    if(persons.some(person => person.name === newName)){
-      alert(`${newName} already exist`)
+    const newData = {
+      name: newName,
+      number: newNumber
     }
-    else if(persons.some(person => person.number === newNumber)){
-      alert(`${newNumber} already exist`)
-    }
-    else{
-      const newPerson = {
-        name: newName,
-        number: newNumber
+
+    // CHECK IF DATA EXIST
+    
+    const person = persons.find(person => person.name === newData.name)
+    const number = persons.find(person => person.number === newData.number)
+
+    // CHANGE NUMBER
+    if (person) {
+      if (window.confirm(`${newName} already exist, replace the number with a new one ?`)) {
+        personServer
+          .updatePerson(person.id, newData)
+          .then(res => setPersons(
+            persons.map(per => per.id === res.id ? res : per)
+          ))
       }
-  
-      setPersons(persons.concat(newPerson))
+    }
+
+    // CHANGE NAME
+    else if (number) {
+      if (window.confirm(`${newNumber} already exist,
+        replace the name with a new one ?`)) {
+        personServer
+          .updatePerson(number.id, newData)
+          .then(res => setPersons(
+            persons.map(per => per.id === res.id ? res : per)
+          ))
+      }
+    }
+
+    // CREATE A NEW USER
+    else {
+      personServer
+        .createPerson(newData)
+        .then(person => {
+          console.log(person)
+          setPersons(persons.concat(person))
+        })
+
       setNewName('')
       setNewNumber('')
     }
   }
 
 
+  // DELETE A PERSON
+  const deletePerson = (id) => {
+    personServer
+      .deletePerson(id)
+      .then(res => console.log(`person with id ${id} deleted ...`))
+
+    setPersons(persons.filter(person => person.id !== id))
+  }
+
+
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter filter={filter} handleFilter={handleFilter}/>
+      <Filter filter={filter} handleFilter={handleFilter} />
       <h2>Add New</h2>
-      <PersonForm addPerson={addPerson} newName={newName} handleInput={handleInput}
+      <PersonForm submitControl={submitControl} newName={newName} handleInput={handleInput}
         newNumber={newNumber} handleNumber={handleNumber}
       />
       <h2>Numbers</h2>
-      <Persons persons={persons} filter={filter}/>
+      <Persons persons={persons} filter={filter} deletePerson={deletePerson} />
     </div>
   )
 }

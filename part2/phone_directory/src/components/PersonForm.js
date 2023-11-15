@@ -3,7 +3,7 @@ import React from 'react'
 const PersonForm = (props) => {
   return (
     <div>
-      <form onSubmit={props.addPerson}>
+      <form onSubmit={props.submitControl}>
         <div>
           name: <input
             type='text'

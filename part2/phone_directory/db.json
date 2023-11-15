@@ -1,0 +1,39 @@
+{
+  "persons": [
+    {
+      "name": "Ada Lovelace",
+      "number": "98198349",
+      "id": 2
+    },
+    {
+      "name": "Maestro de Full Stack",
+      "number": "12-43-234345",
+      "id": 3
+    },
+    {
+      "name": "Mary Poppendieck",
+      "number": "39-23-6423122",
+      "id": 4
+    },
+    {
+      "name": "Jose Weber",
+      "number": "994-858585",
+      "id": 5
+    },
+    {
+      "name": "Micaela Del Carmen",
+      "number": "981-121212",
+      "id": 6
+    },
+    {
+      "name": "Ares Schmickler",
+      "number": "995-121212",
+      "id": 7
+    },
+    {
+      "name": "testing",
+      "number": "1341324",
+      "id": 8
+    }
+  ]
+}
