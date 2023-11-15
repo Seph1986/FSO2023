@@ -1,11 +1,6 @@
 {
   "persons": [
     {
-      "name": "Ada Lovelace",
-      "number": "98198349",
-      "id": 2
-    },
-    {
       "name": "Maestro de Full Stack",
       "number": "12-43-234345",
       "id": 3
@@ -31,9 +26,9 @@
       "id": 7
     },
     {
-      "name": "testing",
-      "number": "1341324",
-      "id": 8
+      "name": "Arturo Elias",
+      "number": "986858588",
+      "id": 9
     }
   ]
 }

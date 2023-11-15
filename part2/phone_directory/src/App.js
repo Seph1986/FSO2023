@@ -1,14 +1,21 @@
+// React imports
 import React, { useState, useEffect } from 'react'
+// Moduls import
+import personServer from './services/persons'
+// Component imports
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import Persons from './components/Persons'
-import personServer from './services/persons'
+import Notification from './components/Notification'
+
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [message, setMessage] = useState('')
+  const [messageType, setMessageType] = useState('')
 
 
   // HANDLE TEXT INPUT
@@ -53,7 +60,7 @@ const App = () => {
     }
 
     // CHECK IF DATA EXIST
-    
+
     const person = persons.find(person => person.name === newData.name)
     const number = persons.find(person => person.number === newData.number)
 
@@ -65,19 +72,36 @@ const App = () => {
           .then(res => setPersons(
             persons.map(per => per.id === res.id ? res : per)
           ))
+        setMessage(`number changed for name: ${person.name}`)
+        setMessageType('success')
+        setTimeout(() => {
+          console.log('working in progress...')
+          setMessage('')
+          setMessageType('')
+        }, 5000)
       }
+      setNewName('')
+      setNewNumber('')
     }
 
     // CHANGE NAME
     else if (number) {
-      if (window.confirm(`${newNumber} already exist,
-        replace the name with a new one ?`)) {
+      if (window.confirm(`${newNumber} already exist, replace the name with a new one ?`)) {
         personServer
           .updatePerson(number.id, newData)
           .then(res => setPersons(
             persons.map(per => per.id === res.id ? res : per)
           ))
+        setMessage(`name changed for number: ${number.number}`)
+        setMessageType('success')
+        setTimeout(() => {
+          console.log('working in progress...')
+          setMessage('')
+          setMessageType('')
+        }, 5000)
       }
+      setNewName('')
+      setNewNumber('')
     }
 
     // CREATE A NEW USER
@@ -88,9 +112,13 @@ const App = () => {
           console.log(person)
           setPersons(persons.concat(person))
         })
-
-      setNewName('')
-      setNewNumber('')
+      setMessage(`Person added to the list: ${newData.name}`)
+      setMessageType('success')
+      setTimeout(() => {
+        console.log('working in progress...')
+        setMessage('')
+        setMessageType('')
+      }, 5000)
     }
   }
 
@@ -99,15 +127,28 @@ const App = () => {
   const deletePerson = (id) => {
     personServer
       .deletePerson(id)
-      .then(res => console.log(`person with id ${id} deleted ...`))
+      .then(res => {
+        console.log(`person with id ${id} deleted ...`)
+        setPersons(persons.filter(person => person.id !== id))
+      })
+      .catch(error => {
+        setMessage('Person already deleted')
+        setMessageType('error')
+        setPersons(persons.filter(person => person.id !== id))
 
-    setPersons(persons.filter(person => person.id !== id))
+        setTimeout(() => {
+          console.log('workin in progress')
+          setMessage('')
+          setMessageType('')
+        }, 5000)
+      })
   }
 
 
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} type={messageType} />
       <Filter filter={filter} handleFilter={handleFilter} />
       <h2>Add New</h2>
       <PersonForm submitControl={submitControl} newName={newName} handleInput={handleInput}
