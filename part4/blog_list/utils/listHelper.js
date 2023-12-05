@@ -21,7 +21,7 @@ const totalLikes = (blogsList) => {
 }
 
 
-// FIND MOST LIKED BLOG
+/*FIND MOST LIKED BLOG*/ 
 const favoriteBlog = (blogList) => {
 
   const myObject = blogList.reduce((mostLiked, obj) => {
@@ -49,8 +49,32 @@ const mostBlogs = (blogList) => {
 }
 
 
+/*FIND AUTHOR WITH MOST AMOUNT OF LIKES*/
 const mostLikes = (blogList) => {
+  const liked = blogList.reduce((list, blog) => {
+    let author = blog.author
+    let likes = blog.likes
+    
+     if(list[author]){
+       list[author] += likes
+     }else
+       list[author] = likes
+    
+    return list
+  },{})
   
+  let result = undefined
+  
+  for (let key in liked){
+    if(result === undefined || result.likes < liked[key] ){
+        result = {
+        author: key,
+        likes: liked[key]
+      }
+    }
+  }
+  
+  return result
 }
 
 
