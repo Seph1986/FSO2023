@@ -2,12 +2,12 @@ const n_ = require('lodash')
 
 
 // FUNCTION FOR TESTING
-const dummy = (blogs) => {
+const dummy = (blogs) => { //eslint-disable-line
   return 1
 }
 
 
-/* FUNCTION THAT FINDS THE TOTAL LIKE 
+/* FUNCTION THAT FINDS THE TOTAL LIKE
 OF A LIST OF BLOGS*/
 const totalLikes = (blogsList) => {
   const reducer = (sum, ind) => {
@@ -21,7 +21,7 @@ const totalLikes = (blogsList) => {
 }
 
 
-/*FIND MOST LIKED BLOG*/ 
+/*FIND MOST LIKED BLOG*/
 const favoriteBlog = (blogList) => {
 
   const myObject = blogList.reduce((mostLiked, obj) => {
@@ -54,26 +54,26 @@ const mostLikes = (blogList) => {
   const liked = blogList.reduce((list, blog) => {
     let author = blog.author
     let likes = blog.likes
-    
-     if(list[author]){
-       list[author] += likes
-     }else
-       list[author] = likes
-    
+
+    if (list[author]) {
+      list[author] += likes
+    } else
+      list[author] = likes
+
     return list
-  },{})
-  
+  }, {})
+
   let result = undefined
-  
-  for (let key in liked){
-    if(result === undefined || result.likes < liked[key] ){
-        result = {
+
+  for (let key in liked) {
+    if (result === undefined || result.likes < liked[key]) {
+      result = {
         author: key,
         likes: liked[key]
       }
     }
   }
-  
+
   return result
 }
 

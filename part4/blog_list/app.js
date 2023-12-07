@@ -1,3 +1,4 @@
+require('express-async-errors')
 // LOCAL MODULES
 const blogRouter = require('./controllers/blog')
 const blogMiddlewares = require('./utils/middleware')
@@ -9,10 +10,10 @@ const express = require('express')
 const cors = require('cors')
 
 
-// MongoDB CONECTION 
+// MongoDB CONECTION
 console.log('Conecting to', config.BLOG_URL)
 mongoose.connect(config.BLOG_URL)
-  .then(res => logger.info('conected to MongoDB'))
+  .then(res => logger.info('conected to MongoDB')) //eslint-disable-line
   .catch(err => logger.error('error: ', err.message))
 
 

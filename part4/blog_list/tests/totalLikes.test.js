@@ -14,7 +14,7 @@ describe('total likes', () => {
     }
   ]
 
-  test(`if the list it's empty`, () => {
+  test('if the list its empty', () => {
     const result = totalLikes([])
     expect(result).toBe(0)
   })
