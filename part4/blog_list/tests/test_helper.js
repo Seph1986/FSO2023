@@ -19,6 +19,20 @@ const blogsList = [
   }
 ]
 
+const initialUsers = [
+  {
+    username: 'testing',
+    name: 'user for test',
+    password: '12345'
+  },
+  {
+    username: 'ares13',
+    name:'Ares President',
+    password: 'jaja123'
+  }
+]
+
 module.exports = {
-  blogsList
+  blogsList,
+  initialUsers
 }
