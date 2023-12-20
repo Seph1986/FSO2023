@@ -1,24 +1,30 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const Message = ({message, messageType}) => {
+const Message = ({ message, messageType }) => {
 
-  const color = messageType === "error"
-    ? "red"
-    : "green"
+  const color = messageType === 'error'
+    ? 'red'
+    : 'green'
 
-  const messageStyle ={
-    backgroundColor: "lightgray",
-    borderRadius: "10px",
-    padding: "10px",
-    borderStyle: "solid",
+  const messageStyle = {
+    backgroundColor: 'lightgray',
+    borderRadius: '10px',
+    padding: '10px',
+    borderStyle: 'solid',
     color: color
   }
 
-  return(
+  return (
     <div>
       <h3 style={(messageStyle)}>{message}</h3>
     </div>
   )
+}
+
+Message.propTypes = {
+  message: PropTypes.string.isRequired,
+  messageType: PropTypes.string.isRequired
 }
 
 export default Message

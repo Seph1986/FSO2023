@@ -96,11 +96,11 @@ const App = () => {
   }
 
   const handleDelete = async (blog) => {
-    if (window.confirm(`Remove blog ${blog.title}`)){
+    if (window.confirm(`Remove blog ${blog.title}`)) {
       await blogService.deleteBlog(blog.id)
 
       const newBlogList = blogs.reduce((acc, current) => {
-        if(current.id !== blog.id) acc.push(current)
+        if (current.id !== blog.id) acc.push(current)
         return acc
       }, [])
 
@@ -133,7 +133,7 @@ const App = () => {
       {user !== null &&
         <>
           <div>
-            <p style={{ display: "inline-block", marginRight: "5px" }}>
+            <p style={{ display: 'inline-block', marginRight: '5px' }}>
               <strong>{user.username}</strong>
               logged in
             </p>
@@ -147,7 +147,7 @@ const App = () => {
               blogPostHandler={blogPostHandler}
             />
           </Toggable>
-          <BlogList 
+          <BlogList
             blogs={blogs}
             handleLike={handleLike}
             user={user}

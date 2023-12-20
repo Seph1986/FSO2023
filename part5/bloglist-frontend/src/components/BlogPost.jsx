@@ -1,6 +1,7 @@
-import React, {useState} from "react"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-const BlogPost = ({blogPostHandler}) => {
+const BlogPost = ({ blogPostHandler }) => {
 
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
@@ -11,7 +12,7 @@ const BlogPost = ({blogPostHandler}) => {
     const newBlog = { title, author, url }
 
     blogPostHandler(newBlog)
-    
+
     setTitle('')
     setAuthor('')
     setUrl('')
@@ -24,34 +25,39 @@ const BlogPost = ({blogPostHandler}) => {
         <div>
           title:
           <input
-            type="text"
+            type='text'
             value={title}
             onChange={({ target }) => setTitle(target.value)}
-            name="Title"
+            name='Title'
           ></input>
         </div>
         <div>
           author:
           <input
-            type="text"
+            type='text'
             value={author}
             onChange={({ target }) => setAuthor(target.value)}
-            name="Author"
+            name='Author'
           ></input>
         </div>
         <div>
           url:
           <input
-            type="text"
+            type='text'
             value={url}
             onChange={({ target }) => setUrl(target.value)}
-            name="Url"
+            name='Url'
           ></input>
         </div>
-        <button type="submit">create</button>
+        <button type='submit'>create</button>
       </form>
     </>
   )
 }
+
+BlogPost.propTypes = {
+  blogPostHandler: PropTypes.func.isRequired
+}
+
 
 export default BlogPost

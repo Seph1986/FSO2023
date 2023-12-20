@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const Blog = ({ blog, handleLike, user, handleDelete }) => {
   const [visible, setVisible] = useState(false)
@@ -44,6 +45,12 @@ const Blog = ({ blog, handleLike, user, handleDelete }) => {
   )
 }
 
+Blog.propTypes = {
+  blog: PropTypes.object.isRequired,
+  handleLike: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  handleDelete: PropTypes.func.isRequired
+}
 
 
 export default Blog
