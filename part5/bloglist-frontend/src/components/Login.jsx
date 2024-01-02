@@ -9,6 +9,7 @@ const Login = ({ loginHandler, setUsername, setPassword, username, password }) =
         <div>
           username:
           <input
+            id='username'
             type='text'
             value={username}
             name='Username'
@@ -19,6 +20,7 @@ const Login = ({ loginHandler, setUsername, setPassword, username, password }) =
         <div>
           password:
           <input
+            id='password'
             type='password'
             value={password}
             name='Password'
@@ -26,7 +28,7 @@ const Login = ({ loginHandler, setUsername, setPassword, username, password }) =
           >
           </input>
         </div>
-        <button type='submit'>login</button>
+        <button id='login-button' type='submit'>login</button>
       </form>
     </>
   )

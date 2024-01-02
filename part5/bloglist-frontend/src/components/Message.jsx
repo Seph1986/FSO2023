@@ -17,7 +17,7 @@ const Message = ({ message, messageType }) => {
 
   return (
     <div>
-      <h3 style={(messageStyle)}>{message}</h3>
+      <h3 id='message' style={(messageStyle)}>{message}</h3>
     </div>
   )
 }

@@ -26,6 +26,11 @@ app.use(express.json())
 app.use(blogMiddlewares.requestDataMiddleware)
 app.use(blogMiddlewares.getToken)
 
+if(process.env.NODE_ENV === 'test'){
+  const testingRouter = require('./controllers/testing')
+  app.use('/api/testing', testingRouter)
+}
+
 app.use('/api/blogs', blogRouter)
 app.use('/api/users', userRouter)
 app.use('/api/login', loginRouter)

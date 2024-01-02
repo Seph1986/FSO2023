@@ -22,7 +22,7 @@ const Blog = ({ blog, handleLike, user, handleDelete }) => {
   }
 
   return (
-    <>
+    <div className='blog'>
       <div style={blogStyle}>
         {blog.title}; <strong>{blog.author}</strong>
         <button onClick={() => setVisible(!visible)}>{button}</button>
@@ -36,6 +36,7 @@ const Blog = ({ blog, handleLike, user, handleDelete }) => {
           <br></br>
           {blog.user.username === user.username &&
             <button
+              id='deleteButton'
               style={buttonRemove}
               onClick={() => handleDelete(blog)}>
               remove
@@ -43,7 +44,7 @@ const Blog = ({ blog, handleLike, user, handleDelete }) => {
           }
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

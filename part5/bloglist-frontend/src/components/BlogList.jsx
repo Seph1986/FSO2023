@@ -5,7 +5,7 @@ const BlogList = ({ blogs, handleLike, user, handleDelete }) => {
   blogs.sort((a, b) => b.likes - a.likes)
 
   return (
-    <>
+    <div id='blogList'>
       <h2>blogs</h2>
       {blogs.map(blog =>
         <Blog
@@ -16,7 +16,7 @@ const BlogList = ({ blogs, handleLike, user, handleDelete }) => {
           handleDelete={handleDelete}
         />
       )}
-    </>
+    </div>
   )
 }
 

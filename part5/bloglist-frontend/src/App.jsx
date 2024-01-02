@@ -134,7 +134,7 @@ const App = () => {
         <>
           <div>
             <p style={{ display: 'inline-block', marginRight: '5px' }}>
-              <strong>{user.username}</strong>
+              <strong>{user.username} </strong>
               logged in
             </p>
             <button onClick={logoutHandler}>logout</button>
