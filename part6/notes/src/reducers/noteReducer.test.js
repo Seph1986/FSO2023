@@ -5,8 +5,8 @@ describe('noteReducer', () => {
   test('returns new state with action NEW_NOTE', () => {
     const state = []
     const action = {
-      type: 'NEW_NOTE',
-      data: {
+      type: 'notes/createNote',
+      payload: {
         content: 'the app state is in redux store',
         important: true,
         id: 1
@@ -34,8 +34,8 @@ describe('noteReducer', () => {
       }]
   
     const action = {
-      type: 'TOGGLE_IMPORTANCE',
-      data: {
+      type: 'notes/toggleImportanceOf',
+      payload: {
         id: 2
       }
     }
