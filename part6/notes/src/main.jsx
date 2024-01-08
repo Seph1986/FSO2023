@@ -1,27 +1,25 @@
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import App from './App'
 
 import noteReducer from './reducers/noteReducer'
-
 import filterReducer from './reducers/filterReducer'
+
 
 const store = configureStore(
   {
-    reducer : {
+    reducer: {
       notes: noteReducer,
       filter: filterReducer
     }
   }
 )
 
-console.log(store.getState())
-
-ReactDOM.render( //eslint-disable-line
+createRoot(document.getElementById('root'))
+  .render(
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('root')
-)
+  </Provider>
+  )
