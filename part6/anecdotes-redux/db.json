@@ -3,7 +3,7 @@
     {
       "content": "If it hurts, do it more often",
       "id": 1,
-      "votes": 0
+      "votes": 5
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
@@ -32,13 +32,23 @@
     },
     {
       "content": "First post with json server",
-      "votes": 0,
+      "votes": 2,
       "id": 7
     },
     {
       "content": "All should work perfectly",
       "votes": 0,
       "id": 8
+    },
+    {
+      "content": "First one with redux-thunk",
+      "votes": 8,
+      "id": 9
+    },
+    {
+      "content": "Last test",
+      "votes": 15,
+      "id": 10
     }
   ]
 }
